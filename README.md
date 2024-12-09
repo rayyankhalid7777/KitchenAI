@@ -347,3 +347,89 @@ Since the p-value (~0.671) exceeds the significance level (0.05), we **fail to r
 
 ### Interpretation
 The lack of a significant difference implies that other factors, such as preparation time, recipe complexity, or taste preferences, may play a more substantial role in determining average ratings. This finding highlights the multifaceted nature of user preferences and suggests that future analyses should explore additional recipe attributes to better understand what drives user ratings.
+
+
+## Framing a Prediction Problem
+
+### Prediction Problem Statement
+The goal of this analysis is to predict the **average rating** (`average_rating`) of a recipe based on its characteristics, such as:
+1. Number of ingredients (`n_ingredients`),
+2. Number of preparation steps (`n_steps`), and
+3. Caloric content (`calories`).
+
+Accurately predicting `average_rating` can help us understand how recipe complexity and nutritional content influence user satisfaction. This predictive insight can guide recipe creators in designing dishes that align with user preferences.
+
+### Type of Prediction Problem
+This is a **regression problem**, as the response variable (`average_rating`) is continuous, ranging from 1 to 5.
+
+### Response Variable
+The response variable is **`average_rating`**, which represents the user rating averaged across multiple interactions for a given recipe. This variable was chosen because:
+- It captures overall user satisfaction with a recipe, reflecting its appeal and popularity.
+- Predicting `average_rating` allows us to explore the relationship between recipe attributes and user feedback.
+
+### Features Used for Prediction
+The features selected for prediction include:
+1. **`n_ingredients` (Number of Ingredients)**: Reflects the complexity of the recipe. Simpler recipes may appeal to users seeking convenience.
+2. **`n_steps` (Number of Preparation Steps)**: Indicates the effort required to complete the recipe. Recipes with fewer steps may attract users who value simplicity.
+3. **`calories`**: Represents the nutritional content of the recipe. Extreme caloric values may influence perceptions of healthiness, affecting user ratings.
+
+### Evaluation Metric
+To evaluate the performance of the predictive model, we will use the **Mean Absolute Error (MAE)**:
+- **Why MAE?**
+  - It provides an interpretable measure of the average prediction error in the same units as `average_rating`.
+  - MAE is robust to outliers, which is essential given the skewed distribution of `average_rating`.
+
+### Justification for Features and Prediction Timing
+The selected features (`n_ingredients`, `n_steps`, and `calories`) are logical predictors of `average_rating`:
+- **Complexity**: Captured by `n_ingredients` and `n_steps`, directly relates to user satisfaction and accessibility.
+- **Nutritional Content**: Reflected by `calories`, influences health perceptions and overall appeal.
+
+All these features are known at the time of prediction since they are inherent attributes of the recipe.
+
+### Visual Exploration of the Problem
+#### 1. **Distribution of `average_rating`**
+   - The histogram of `average_rating` reveals a strong skew toward higher ratings, with many recipes clustering at the maximum value of 5.
+<iframe
+  src="assets/Step5_Distribution_of_Average_Ratings.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+#### 2. **Scatterplot: `n_ingredients` vs. `average_rating`**
+   - Displays no strong linear trend, but recipes with fewer ingredients tend to cluster around higher ratings.
+<iframe
+  src="assets/Step5_Scatterplot_n_ingredients.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+#### 3. **Scatterplot: `n_steps` vs. `average_rating`**
+   - Suggests that recipes with fewer steps exhibit more consistent ratings, likely due to their simplicity.
+<iframe
+  src="assets/Step5_Scatterplot_n_steps.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+#### 4. **Scatterplot: `calories` vs. `average_rating`**
+   - Shows that recipes with moderate calorie levels often achieve higher ratings, while extreme calorie counts show no clear trend.
+<iframe
+  src="assets/Step5_Scatterplot_calories.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+### Summary of Observations
+- Recipes with fewer ingredients and fewer preparation steps are generally rated more favorably, likely due to their accessibility and ease of preparation.
+- Moderate calorie levels appear to correlate with higher user satisfaction, whereas extreme values (either high or low) lack a consistent relationship with ratings.
+- The response variable (`average_rating`) is well-suited for regression analysis, as it quantitatively captures user satisfaction.
+
+### Importance of This Prediction Problem
+Predicting `average_rating` offers valuable insights for:
+1. **Recipe Creators**: Helping them craft recipes that align with user preferences for simplicity, healthiness, or complexity.
+2. **Food Enthusiasts**: Enabling them to discover recipes more likely to meet their expectations.
+3. **Culinary Data Analysis**: Providing a quantitative basis for understanding how recipe attributes influence user satisfaction.
