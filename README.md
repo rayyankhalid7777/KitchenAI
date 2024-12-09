@@ -493,6 +493,75 @@ To enhance the model’s accuracy, the following strategies could be considered:
    - Extract additional features, such as the length of recipe descriptions, sentiment analysis of user reviews, or derived metrics (e.g., ingredient diversity).
 3. **Accounting for Feature Interactions**:
    - Incorporate methods to model interactions between numerical and categorical features, which may provide richer insights.
+  
+
+## Final Model
+
+### Features Added
+To enhance the predictive power of the model, the following features were added based on their relevance to the data-generating process:
+
+1. **Interaction Term: `n_steps * n_ingredients`**
+   - This feature captures the interaction between the number of steps and the number of ingredients in a recipe. It reflects the complexity of recipes, as recipes with many steps and ingredients are often more challenging to prepare.
+   - From the perspective of the data-generating process, more complex recipes may influence user ratings differently, depending on the effort and skill required to execute them. Including this interaction term allows the model to account for such variations.
+
+2. **Log Transformation of `minutes`**
+   - A log transformation was applied to the `minutes` column to normalize its distribution, addressing extreme outliers such as recipes with very long cooking times.
+   - This transformation reduces skewness, ensuring that the model does not disproportionately weight recipes with unusually long preparation times. By normalizing the feature, the model can better understand how typical cooking times affect user ratings.
+
+These features were selected because they align with the key factors that likely influence recipe ratings. They provide meaningful representations of recipe complexity and preparation time, enhancing the model's ability to capture relationships between features and the target variable.
+
+---
+
+### Modeling Algorithm
+The **Random Forest Regressor** was used as the final model due to its strengths:
+- Ability to handle both numerical and categorical data.
+- Robustness to overfitting due to its ensemble nature.
+- Capability to capture non-linear relationships between features.
+
+#### Hyperparameters Tuned:
+1. **`n_estimators`**: Number of trees in the forest.
+2. **`max_depth`**: Maximum depth of each tree.
+3. **`min_samples_split`**: Minimum number of samples required to split an internal node.
+
+#### Method Used for Hyperparameter Tuning:
+- **GridSearchCV** was employed with 3-fold cross-validation to explore various combinations of hyperparameters and identify the optimal set.
+- **Best Parameters Identified:**
+  - `n_estimators`: 200
+  - `max_depth`: 10
+  - `min_samples_split`: 2
+
+These hyperparameters strike a balance between model complexity and generalizability, ensuring good performance on unseen data.
+
+---
+
+### Performance Comparison
+The final model demonstrated a measurable improvement over the baseline model:
+
+- **Baseline Model Performance:**
+  - Mean Absolute Error (MAE): **0.4891**
+- **Final Model Performance:**
+  - Mean Absolute Error (MAE): **0.4640**
+
+This improvement in MAE indicates that the final model predicts recipe ratings more accurately than the baseline. The enhancement can be attributed to:
+1. The addition of engineered features that better represent recipe complexity and preparation characteristics.
+2. Optimized hyperparameters, improving the model's ability to generalize.
+
+---
+
+### Visualization
+The bar chart below compares the performance of the baseline and final models. The reduction in MAE reflects the improvement in prediction accuracy:
+<iframe
+  src="assets/Step7.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+---
+
+### Conclusion
+The final model significantly improves upon the baseline by incorporating well-thought-out features and optimized hyperparameters. The use of engineered features, such as the interaction term and log transformation, ensures the model captures crucial aspects of the data-generating process. While the performance is strong, further refinements could include testing additional interactions, exploring more advanced models, or incorporating new features from the dataset. This step demonstrates how thoughtful feature engineering and model tuning can elevate the performance of predictive models.
+
 
 ### Conclusion
 The baseline model serves as a strong foundation for predicting `average_rating`, achieving a respectable MAE of **0.4891**. While the model effectively integrates diverse features, there is substantial room for improvement. Through hyperparameter tuning, advanced feature engineering, and interaction modeling, the predictive performance can be further enhanced. This baseline sets the stage for the final model to demonstrate significant improvements.
