@@ -433,3 +433,66 @@ Predicting `average_rating` offers valuable insights for:
 1. **Recipe Creators**: Helping them craft recipes that align with user preferences for simplicity, healthiness, or complexity.
 2. **Food Enthusiasts**: Enabling them to discover recipes more likely to meet their expectations.
 3. **Culinary Data Analysis**: Providing a quantitative basis for understanding how recipe attributes influence user satisfaction.
+
+
+## Step 6: Baseline Model
+
+### Model Description
+The baseline model is a **Random Forest Regressor**, chosen for its robustness and ability to handle both numerical and categorical data effectively. The model is built using a pipeline to streamline preprocessing and ensure reproducibility. By incorporating preprocessing steps within the pipeline, data transformations are applied consistently across the training and test sets, minimizing data leakage.
+
+### Features in the Model
+The model incorporates a mix of numerical and categorical features, processed as follows:
+
+#### Numerical Features (6):
+1. **`minutes`**: Total time to prepare the recipe.
+2. **`n_steps`**: Number of steps required to prepare the recipe.
+3. **`n_ingredients`**: Number of ingredients used in the recipe.
+4. **`calories`**: Total calorie count of the recipe.
+5. **`protein`**: Protein content (as a percentage of the daily value).
+6. **`sodium`**: Sodium content (as a percentage of the daily value).
+
+- These numerical features were scaled using **StandardScaler** to ensure equal weighting during model training. Scaling is essential for Random Forest Regressors, as unscaled features with larger ranges could disproportionately influence the splits.
+
+#### Categorical Features (1):
+1. **`tags`**: Comma-separated tags describing recipe attributes (e.g., "dessert", "vegetarian").
+
+- The `tags` feature was processed using **OneHotEncoder**, which creates dummy variables for each unique tag. This encoding ensures that categorical information is represented in a format usable by the Random Forest Regressor.
+
+### Evaluation Metric
+The **Mean Absolute Error (MAE)** was chosen as the evaluation metric for the baseline model because:
+- It provides an interpretable measure of average prediction error in the same units as the target variable (`average_rating`).
+- It is robust to outliers, making it suitable for our dataset, where ratings are skewed towards higher values.
+
+### Model Performance
+- **MAE**: **0.4891**
+  - This result indicates that the model’s predictions deviate, on average, by approximately **0.5 points** from the true recipe ratings. Considering the target variable (`average_rating`) ranges from 1 to 5, this represents a reasonably good baseline performance.
+
+### Discussion
+
+#### Strengths
+1. **Inclusion of Diverse Feature Types**:
+   - The model leverages both numerical and categorical features, enhancing its predictive power.
+2. **Reproducibility**:
+   - The pipeline ensures that preprocessing steps (e.g., scaling and encoding) are applied consistently across the dataset.
+3. **Handling of Categorical Data**:
+   - OneHotEncoder efficiently represents categorical features without introducing biases from ordinal relationships.
+
+#### Weaknesses
+1. **Lack of Feature Interactions**:
+   - The model does not explicitly account for interactions between features (e.g., how `calories` and `tags` might jointly influence ratings).
+2. **Limited Feature Engineering**:
+   - Additional insights could be derived from features like recipe descriptions (`description`) or steps (`steps`) through natural language processing (NLP) techniques.
+3. **Hyperparameter Tuning**:
+   - The model uses default hyperparameters for the Random Forest Regressor, which may not optimize its performance.
+
+#### Areas for Improvement
+To enhance the model’s accuracy, the following strategies could be considered:
+1. **Hyperparameter Tuning**:
+   - Experiment with the number of trees (`n_estimators`), maximum tree depth (`max_depth`), and minimum samples per split (`min_samples_split`) to improve model performance.
+2. **Feature Engineering**:
+   - Extract additional features, such as the length of recipe descriptions, sentiment analysis of user reviews, or derived metrics (e.g., ingredient diversity).
+3. **Accounting for Feature Interactions**:
+   - Incorporate methods to model interactions between numerical and categorical features, which may provide richer insights.
+
+### Conclusion
+The baseline model serves as a strong foundation for predicting `average_rating`, achieving a respectable MAE of **0.4891**. While the model effectively integrates diverse features, there is substantial room for improvement. Through hyperparameter tuning, advanced feature engineering, and interaction modeling, the predictive performance can be further enhanced. This baseline sets the stage for the final model to demonstrate significant improvements.
