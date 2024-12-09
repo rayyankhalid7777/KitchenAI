@@ -563,5 +563,63 @@ The bar chart below compares the performance of the baseline and final models. T
 The final model significantly improves upon the baseline by incorporating well-thought-out features and optimized hyperparameters. The use of engineered features, such as the interaction term and log transformation, ensures the model captures crucial aspects of the data-generating process. While the performance is strong, further refinements could include testing additional interactions, exploring more advanced models, or incorporating new features from the dataset. This step demonstrates how thoughtful feature engineering and model tuning can elevate the performance of predictive models.
 
 
+## Fairness Analysis
+
+### Fairness Assessment Overview
+Fairness in predictive modeling is essential to ensure that the model performs equitably across different groups. In this project, we analyzed the fairness of the final model by comparing its performance between two distinct groups of recipes based on their preparation times:
+1. **Quick Recipes:** Recipes with cooking times ≤ 30 minutes.
+2. **Time-Consuming Recipes:** Recipes with cooking times > 30 minutes.
+
+---
+
+### Hypotheses
+- **Null Hypothesis (H₀):** The model's performance (measured by Mean Absolute Error, MAE) does not differ significantly between the two groups (Quick Recipes and Time-Consuming Recipes).
+- **Alternative Hypothesis (Hₐ):** The model's performance differs significantly between the two groups.
+
+---
+
+### Evaluation Metric
+The **Mean Absolute Error (MAE)** was used to measure the model's performance for each group. MAE is appropriate for this analysis because it provides an interpretable measure of average prediction error.
+
+---
+
+### Test Statistic
+The **difference in MAE** between the two groups was chosen as the test statistic, reflecting disparities in the model’s performance.
+
+---
+
+### Significance Level
+A significance level of **α = 0.05** was used to determine statistical significance.
+
+---
+
+### Results
+- **Observed MAE Difference:** 0.0407  
+- **P-Value:** 0.0  
+
+The permutation test revealed that the observed difference in MAE is statistically significant, as the p-value is less than the chosen significance level of 0.05. The histogram below illustrates the distribution of permutation test statistics under the null hypothesis, with the observed difference marked by the red dashed line.
+
+<iframe
+  src="assets/Fairness_Permutation_Test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+---
+
+### Conclusion
+The results suggest that the model performs slightly better for one group of recipes than the other. Specifically, the significant difference in MAE between Quick Recipes and Time-Consuming Recipes indicates potential unfairness in the model. While the magnitude of the difference may seem small, this finding is important as it highlights areas where the model could be improved to ensure equitable performance across all recipe types.
+
+---
+
+### Final Thoughts
+This project combined robust data cleaning, exploratory analysis, predictive modeling, and fairness assessments to uncover insights into recipe ratings and user preferences. While the final model demonstrated an improvement over the baseline, the fairness analysis identified areas for refinement, emphasizing the importance of equitable model performance. Future work could include:
+- Incorporating additional features or user-specific data to enhance predictions.
+- Applying advanced fairness-aware modeling techniques to reduce disparities across groups.
+- Expanding the analysis to include other recipe characteristics that may influence ratings.
+
+Through this project, we not only explored the fascinating intersection of data science and culinary arts but also underscored the ethical considerations in predictive modeling. These insights are valuable not only for understanding recipe preferences but also for designing better, more equitable models in any domain.
+
 ### Conclusion
 The baseline model serves as a strong foundation for predicting `average_rating`, achieving a respectable MAE of **0.4891**. While the model effectively integrates diverse features, there is substantial room for improvement. Through hyperparameter tuning, advanced feature engineering, and interaction modeling, the predictive performance can be further enhanced. This baseline sets the stage for the final model to demonstrate significant improvements.
