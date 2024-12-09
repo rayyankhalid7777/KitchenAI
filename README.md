@@ -196,6 +196,13 @@ To further explore the missingness in `average_rating`, we conducted permutation
   - Observed Test Statistic: **0.35**
   - P-value: **0.90**
 
+<iframe
+  src="assets/Permutation_Test_missingness_sodium.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 **Conclusion**: Since the p-value is much greater than 0.05, we fail to reject the null hypothesis. The missingness of `average_rating` does not depend on the sodium content.  
 **Insert Sodium Permutation Test Histogram Here**
 
@@ -206,6 +213,13 @@ To further explore the missingness in `average_rating`, we conducted permutation
 - **Results**:
   - Observed Test Statistic: **117.34**
   - P-value: **0.04**
+ 
+<iframe
+  src="assets/Permutation_Test_missingness_minutes.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 **Conclusion**: Since the p-value is less than 0.05, we reject the null hypothesis. The missingness of `average_rating` depends on the preparation time (`minutes`) of the recipe.  
 **Insert Minutes Permutation Test Histogram Here**
@@ -272,7 +286,7 @@ The permutation tests were conducted on the following columns: `protein`, `sodiu
 ### Visual Insights
 1. **`sodium` Plot**: The histogram of permutation test statistics shows that the observed statistic lies well within the null distribution, supporting no dependency.  
 <iframe
-  src="assets/Permutation_Test_missingness_'sodium'.html"
+  src="assets/Permutation_Test_missingness_sodium.html"
   width="800"
   height="600"
   frameborder="0"
@@ -280,7 +294,7 @@ The permutation tests were conducted on the following columns: `protein`, `sodiu
 
 2. **`minutes` Plot**: The histogram shows that the observed statistic is significantly larger than most of the simulated test statistics, supporting dependency.  
 <iframe
-  src="assets/Permutation_Test_missingness_'minutes'.html"
+  src="assets/Permutation_Test_missingness_minutes.html"
   width="800"
   height="600"
   frameborder="0"
