@@ -304,3 +304,46 @@ The permutation tests were conducted on the following columns: `protein`, `sodiu
 Through our analysis:
 - We determined that the missingness in `average_rating` depends on `minutes` (preparation time) but does not depend on `sodium` (sodium content).
 - These insights help us better understand the missingness structure and guide future imputation strategies, ensuring accurate analysis of recipe ratings.
+
+
+## Hypothesis Testing
+
+### Objective
+To determine whether the number of ingredients in a recipe influences its average rating, we conducted a hypothesis test using a permutation approach.
+
+### Hypotheses
+- **Null Hypothesis (H₀)**: The average rating of recipes is independent of the number of ingredients (≤10 ingredients vs. >10 ingredients).
+- **Alternative Hypothesis (Hₐ)**: The average rating of recipes depends on the number of ingredients.
+
+### Test Statistic
+The test statistic is the **absolute difference in the mean average ratings** between two groups:
+1. Recipes with ≤10 ingredients.
+2. Recipes with >10 ingredients.
+
+### Methodology
+1. Calculated the observed test statistic as the absolute difference in means between the two groups.
+2. Simulated the null hypothesis by shuffling the group labels (`≤10 ingredients` and `>10 ingredients`) 1,000 times and recalculating the test statistic for each permutation.
+3. Computed the p-value as the proportion of permuted test statistics greater than or equal to the observed test statistic.
+
+### Significance Level
+- **Significance Level (α)**: 0.05
+
+### Results
+- **Observed Statistic**: ~0.0021  
+- **P-Value**: ~0.671  
+
+### Visualization
+The histogram below illustrates the distribution of test statistics generated under the null hypothesis. The observed statistic is marked by a red vertical line, showing its position relative to the null distribution.
+
+<iframe
+  src="assets/permutation_test_step4.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+### Conclusion
+Since the p-value (~0.671) exceeds the significance level (0.05), we **fail to reject the null hypothesis**. This result suggests that the average rating of recipes is not significantly influenced by the number of ingredients. 
+
+### Interpretation
+The lack of a significant difference implies that other factors, such as preparation time, recipe complexity, or taste preferences, may play a more substantial role in determining average ratings. This finding highlights the multifaceted nature of user preferences and suggests that future analyses should explore additional recipe attributes to better understand what drives user ratings.
