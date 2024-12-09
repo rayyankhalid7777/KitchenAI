@@ -4,11 +4,11 @@ Author: Rayyan Khalid
 
 ## Overview
 
-The goal of this project is to analyze factors that impact the average ratings of recipes and predict future ratings based on recipe attributes such as the number of ingredients, preparation steps, and calorie content. Using a dataset of over 80,000 recipes and user interactions, we clean and explore the data, test hypotheses, build predictive models, and ensure fairness in predictions across recipe categories. This project not only highlights trends in recipe preferences but also addresses the challenges of creating equitable models for diverse data.
+The goal of this project is to analyze factors that impact the average ratings of recipes and predict future ratings based on recipe attributes such as the number of ingredients, preparation steps, and calorie content. Using a dataset of over 80,000 recipes and user interactions, I clean and explore the data, test hypotheses, build predictive models, and ensure fairness in predictions across recipe categories. This project not only highlights trends in recipe preferences but also addresses the challenges of creating equitable models for diverse data.
 
 ## Introduction
 
-This project investigates the key factors that contribute to higher average ratings of recipes on Food.com, a popular recipe-sharing platform. The dataset used in this analysis comprises of two parts: a 'recipes' dataset and an 'interactions' dataset. The recipes dataset contains detailed information about over 83,000 recipes, including preparation time, nutritional details, and ingredients. The interactions dataset provides over 730,000 user reviews and ratings, offering insights into user preferences and behavior. By combining these datasets, we aim to explore trends in recipe ratings and predict future ratings based on recipe attributes.
+This project investigates the key factors that contribute to higher average ratings of recipes on Food.com, a popular recipe-sharing platform. The dataset used in this analysis comprises of two parts: a 'recipes' dataset and an 'interactions' dataset. The recipes dataset contains detailed information about over 83,000 recipes, including preparation time, nutritional details, and ingredients. The interactions dataset provides over 730,000 user reviews and ratings, offering insights into user preferences and behavior. By combining these datasets, I aim to explore trends in recipe ratings and predict future ratings based on recipe attributes.
 
 ### Research Question
 **What types of recipes tend to have higher average ratings?**  
@@ -186,7 +186,7 @@ These insights could provide observable factors to explain why some users do not
 ---
 
 ### Missingness Dependency: Investigating Relationships
-To further explore the missingness in `average_rating`, we conducted permutation tests to determine if the missingness depends on specific columns in the dataset. Below, we summarize our findings for `sodium` (independent column) and `minutes` (dependent column).
+To further explore the missingness in `average_rating`, I conducted permutation tests to determine if the missingness depends on specific columns in the dataset. Below, I summarize my findings for `sodium` (independent column) and `minutes` (dependent column).
 
 #### Sodium and Missingness
 - **Null Hypothesis**: The missingness of `average_rating` does not depend on the sodium content of the recipe.
@@ -203,7 +203,7 @@ To further explore the missingness in `average_rating`, we conducted permutation
   frameborder="0"
 ></iframe>
 
-**Conclusion**: Since the p-value is much greater than 0.05, we fail to reject the null hypothesis. The missingness of `average_rating` does not depend on the sodium content.  
+**Conclusion**: Since the p-value is much greater than 0.05, I fail to reject the null hypothesis. The missingness of `average_rating` does not depend on the sodium content.  
 **Insert Sodium Permutation Test Histogram Here**
 
 #### Minutes and Missingness
@@ -221,46 +221,10 @@ To further explore the missingness in `average_rating`, we conducted permutation
   frameborder="0"
 ></iframe>
 
-**Conclusion**: Since the p-value is less than 0.05, we reject the null hypothesis. The missingness of `average_rating` depends on the preparation time (`minutes`) of the recipe.  
-**Insert Minutes Permutation Test Histogram Here**
-
----
-
-### Visual Insights
-1. **Sodium Dependency**: The histogram of permutation test statistics shows that the observed statistic lies well within the range of simulated values, indicating no dependency.
-2. **Minutes Dependency**: The histogram highlights that the observed statistic is significantly larger than most simulated test statistics, confirming dependency.
-
-These findings emphasize the importance of understanding missingness to avoid biases during imputation and subsequent analysis.
-
-
-## Just testing another step 3
-
-## Assessment of Missingness
-
-### NMAR Analysis: Investigating the Missingness in `average_rating`
-The `average_rating` column in our dataset exhibits characteristics of NMAR (Not Missing At Random). The missingness in this column seems to arise from unobservable factors related to user behavior and preferences.
-
-#### Why `average_rating` Might Be NMAR
-1. **User Decisions**: Missing ratings might result from users who:
-   - Did not prepare the recipe as described.
-   - Do not feel strongly about the recipe (neither liked nor disliked it).
-2. **Unobservable Factors**: These behaviors are not captured by any of the dataset’s columns, making it impossible to directly model the missingness using the existing features.
-
-#### Making NMAR Missingness MAR
-To model this missingness as MAR (Missing At Random), we would need additional data, such as:
-- **User-Specific Behavior**: Information on how frequently users rate recipes.
-- **Engagement Metrics**: Data indicating whether users viewed, saved, or printed recipes.
-- **Recipe-Specific Actions**: Details about whether a recipe was bookmarked or marked as a favorite.
-
-These additional features would allow us to explain why users choose not to leave ratings, potentially transforming the missingness into a MAR structure.
-
----
-
-### Missingness Dependency: Testing Relationships
-To assess whether the missingness of `average_rating` depends on other columns in the dataset, we conducted permutation tests using a mean difference test statistic. Below, we summarize the results.
+**Conclusion**: Since the p-value is less than 0.05, I reject the null hypothesis. The missingness of `average_rating` depends on the preparation time (`minutes`) of the recipe. 
 
 #### Test Results Summary
-The permutation tests were conducted on the following columns: `protein`, `sodium`, `minutes`, `n_ingredients`, and `calories`. The table below summarizes the observed test statistics and p-values:
+I actually performed permutation tests on every relevant columns (`protein`, `sodium`, `minutes`, `n_ingredients`, and `calories`) in the dataset to find out the p-values. The table below summarizes the observed test statistics and p-values:
 
 | Tested Column    | Observed Statistic | P-Value     |
 |-------------------|--------------------|-------------|
@@ -270,60 +234,16 @@ The permutation tests were conducted on the following columns: `protein`, `sodiu
 | `n_ingredients`  | 0.25              | 0.002       |
 | `calories`       | 87.86             | 0.000       |
 
-#### Interpreting the Results
-1. **Independent Column: `sodium`**
-   - **Null Hypothesis**: The missingness of `average_rating` does not depend on the sodium content.
-   - **Result**: With a p-value of 0.880, we fail to reject the null hypothesis, indicating no significant dependency.  
-   **Insert sodium permutation test plot here**
-
-2. **Dependent Column: `minutes`**
-   - **Null Hypothesis**: The missingness of `average_rating` does not depend on the preparation time (`minutes`).
-   - **Result**: With a p-value of 0.044, we reject the null hypothesis, indicating a significant dependency.  
-   **Insert minutes permutation test plot here**
 
 ---
 
-### Visual Insights
-1. **`sodium` Plot**: The histogram of permutation test statistics shows that the observed statistic lies well within the null distribution, supporting no dependency.  
-<iframe
-  src="assets/Permutation_Test_missingness_sodium.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
-
-2. **`minutes` Plot**: The histogram shows that the observed statistic is significantly larger than most of the simulated test statistics, supporting dependency.  
-<iframe
-  src="assets/Permutation_Test_missingness_minutes.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
-
----
-
-### Methodology
-#### Test Statistic
-- The **absolute difference in means** was used as the test statistic to quantify the separation between groups with and without missing values in `average_rating`.
-
-#### Permutation Test Details
-1. **Observed Statistic**: Calculated the absolute difference in the mean of the tested column for recipes with missing and non-missing `average_rating`.
-2. **Null Hypothesis**: The missingness in `average_rating` is independent of the tested column.
-3. **Permutations**: Repeated the process 500 times, shuffling the missingness labels to simulate the null hypothesis.
-4. **P-value**: Computed as the proportion of permuted test statistics greater than or equal to the observed statistic.
-
----
-
-### Conclusion
-Through our analysis:
-- We determined that the missingness in `average_rating` depends on `minutes` (preparation time) but does not depend on `sodium` (sodium content).
-- These insights help us better understand the missingness structure and guide future imputation strategies, ensuring accurate analysis of recipe ratings.
+These findings emphasize the importance of understanding missingness to avoid biases during imputation and subsequent analysis.
 
 
 ## Hypothesis Testing
 
 ### Objective
-To determine whether the number of ingredients in a recipe influences its average rating, we conducted a hypothesis test using a permutation approach.
+To determine whether the number of ingredients in a recipe influences its average rating, I conducted a hypothesis test using a permutation approach.
 
 ### Hypotheses
 - **Null Hypothesis (H₀)**: The average rating of recipes is independent of the number of ingredients (≤10 ingredients vs. >10 ingredients).
@@ -357,7 +277,7 @@ The histogram below illustrates the distribution of test statistics generated un
 ></iframe>
 
 ### Conclusion
-Since the p-value (~0.671) exceeds the significance level (0.05), we **fail to reject the null hypothesis**. This result suggests that the average rating of recipes is not significantly influenced by the number of ingredients. 
+Since the p-value (~0.671) exceeds the significance level (0.05), I **fail to reject the null hypothesis**. This result suggests that the average rating of recipes is not significantly influenced by the number of ingredients. 
 
 ### Interpretation
 The lack of a significant difference implies that other factors, such as preparation time, recipe complexity, or taste preferences, may play a more substantial role in determining average ratings. This finding highlights the multifaceted nature of user preferences and suggests that future analyses should explore additional recipe attributes to better understand what drives user ratings.
@@ -388,7 +308,7 @@ The features selected for prediction include:
 3. **`calories`**: Represents the nutritional content of the recipe. Extreme caloric values may influence perceptions of healthiness, affecting user ratings.
 
 ### Evaluation Metric
-To evaluate the performance of the predictive model, we will use the **Mean Absolute Error (MAE)**:
+To evaluate the performance of the predictive model, I will use the **Mean Absolute Error (MAE)**:
 - **Why MAE?**
   - It provides an interpretable measure of the average prediction error in the same units as `average_rating`.
   - MAE is robust to outliers, which is essential given the skewed distribution of `average_rating`.
@@ -580,7 +500,7 @@ The final model significantly improves upon the baseline by incorporating well-t
 ## Fairness Analysis
 
 ### Fairness Assessment Overview
-Fairness in predictive modeling is essential to ensure that the model performs equitably across different groups. In this project, we analyzed the fairness of the final model by comparing its performance between two distinct groups of recipes based on their preparation times:
+Fairness in predictive modeling is essential to ensure that the model performs equitably across different groups. In this project, I analyzed the fairness of the final model by comparing its performance between two distinct groups of recipes based on their preparation times:
 1. **Quick Recipes:** Recipes with cooking times ≤ 30 minutes.
 2. **Time-Consuming Recipes:** Recipes with cooking times > 30 minutes.
 
@@ -633,7 +553,7 @@ This project combined robust data cleaning, exploratory analysis, predictive mod
 - Applying advanced fairness-aware modeling techniques to reduce disparities across groups.
 - Expanding the analysis to include other recipe characteristics that may influence ratings.
 
-Through this project, we not only explored the fascinating intersection of data science and culinary arts but also underscored the ethical considerations in predictive modeling. These insights are valuable not only for understanding recipe preferences but also for designing better, more equitable models in any domain.
+Through this project, I not only explored the fascinating intersection of data science and culinary arts but also underscored the ethical considerations in predictive modeling. These insights are valuable not only for understanding recipe preferences but also for designing better, more equitable models in any domain.
 
 ### Conclusion
 The baseline model serves as a strong foundation for predicting `average_rating`, achieving a respectable MAE of **0.4891**. While the model effectively integrates diverse features, there is substantial room for improvement. Through hyperparameter tuning, advanced feature engineering, and interaction modeling, the predictive performance can be further enhanced. This baseline sets the stage for the final model to demonstrate significant improvements.
