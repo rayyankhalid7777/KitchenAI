@@ -18,10 +18,32 @@ This question helps uncover the factors that make a recipe popular among users. 
 The datasets include the following columns:
 
 #### Recipes Dataset
-'| Column Name    | Description                                                                  |\n|:---------------|:-----------------------------------------------------------------------------|\n| name           | Name of the recipe, providing a unique identifier for each dish.             |\n| id             | Unique Recipe ID.                                                            |\n| minutes        | Total preparation time for the recipe (in minutes).                          |\n| contributor_id | ID of the user who submitted the recipe.                                     |\n| submitted      | Date when the recipe was submitted.                                          |\n| tags           | Categories associated with the recipe (e.g., cuisine or meal type).          |\n| nutrition      | Nutritional information including calories, fat, protein, and carbohydrates. |\n| n_steps        | Number of steps in the recipe instructions.                                  |\n| steps          | Detailed recipe instructions.                                                |\n| description    | User-provided description of the recipe.                                     |\n| ingredients    | List of ingredients used in the recipe.                                      |\n| n_ingredients  | Total number of ingredients used.                                            |\n| average_rating | The average rating of the recipe, calculated from user interactions.         |'
+| Column Name      | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| name             | Name of the recipe, providing a unique identifier for each dish.           |
+| id               | Unique Recipe ID.                                                          |
+| minutes          | Total preparation time for the recipe (in minutes).                        |
+| contributor_id   | ID of the user who submitted the recipe.                                    |
+| submitted        | Date when the recipe was submitted.                                         |
+| tags             | Categories associated with the recipe (e.g., cuisine or meal type).         |
+| nutrition        | Nutritional information including calories, fat, protein, and carbohydrates.|
+| n_steps          | Number of steps in the recipe instructions.                                 |
+| steps            | Detailed recipe instructions.                                              |
+| description      | User-provided description of the recipe.                                   |
+| ingredients      | List of ingredients used in the recipe.                                     |
+| n_ingredients    | Total number of ingredients used.                                           |
+| average_rating   | The average rating of the recipe, calculated from user interactions.        |
+
 
 #### Interactions Dataset
-'| Column Name   | Description                                       |\n|:--------------|:--------------------------------------------------|\n| user_id       | ID of the user who provided the rating or review. |\n| recipe_id     | ID of the recipe being reviewed.                  |\n| date          | Date of the interaction (review or rating).       |\n| rating        | Rating given to the recipe by the user.           |\n| review        | Textual review provided by the user (optional).   |'
+| Column Name  | Description                                                       |
+|--------------|-------------------------------------------------------------------|
+| user_id      | ID of the user who provided the rating or review.                 |
+| recipe_id    | ID of the recipe being reviewed.                                  |
+| date         | Date of the interaction (review or rating).                       |
+| rating       | Rating given to the recipe by the user.                           |
+| review       | Textual review provided by the user (optional).                   |
+
 
 ### Importance of the Study
 Understanding the elements that influence recipe ratings has both practical and academic significance. It helps recipe developers identify traits that users find appealing, such as simplicity or nutritional content, and empowers food enthusiasts with insights to discover recipes they might enjoy. Moreover, this project showcases robust data analysis and predictive modeling techniques that can be applied to other recommendation systems.
