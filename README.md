@@ -18,21 +18,72 @@ This question helps uncover the factors that make a recipe popular among users. 
 The datasets include the following columns:
 
 #### Recipes Dataset
-| Column Name    | Description                                                                  |
-|----------------|------------------------------------------------------------------------------|
-| name           | Name of the recipe, providing a unique identifier for each dish.             |
-| id             | Unique Recipe ID.                                                            |
-| minutes        | Total preparation time for the recipe (in minutes).                          |
-| contributor_id | ID of the user who submitted the recipe.                                     |
-| submitted      | Date when the recipe was submitted.                                          |
-| tags           | Categories associated with the recipe (e.g., cuisine or meal type).          |
-| nutrition      | Nutritional information including calories, fat, protein, and carbohydrates. |
-| n_steps        | Number of steps in the recipe instructions.                                  |
-| steps          | Detailed recipe instructions.                                                |
-| description    | User-provided description of the recipe.                                     |
-| ingredients    | List of ingredients used in the recipe.                                      |
-| n_ingredients  | Total number of ingredients used.                                            |
-| average_rating | The average rating of the recipe, calculated from user interactions.         |
+{% raw %}
+<h3>Recipes Dataset</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td>Name of the recipe, providing a unique identifier for each dish.</td>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>Unique Recipe ID.</td>
+    </tr>
+    <tr>
+      <td>minutes</td>
+      <td>Total preparation time for the recipe (in minutes).</td>
+    </tr>
+    <tr>
+      <td>contributor_id</td>
+      <td>ID of the user who submitted the recipe.</td>
+    </tr>
+    <tr>
+      <td>submitted</td>
+      <td>Date when the recipe was submitted.</td>
+    </tr>
+    <tr>
+      <td>tags</td>
+      <td>Categories associated with the recipe (e.g., cuisine or meal type).</td>
+    </tr>
+    <tr>
+      <td>nutrition</td>
+      <td>Nutritional information including calories, fat, protein, and carbohydrates.</td>
+    </tr>
+    <tr>
+      <td>n_steps</td>
+      <td>Number of steps in the recipe instructions.</td>
+    </tr>
+    <tr>
+      <td>steps</td>
+      <td>Detailed recipe instructions.</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>User-provided description of the recipe.</td>
+    </tr>
+    <tr>
+      <td>ingredients</td>
+      <td>List of ingredients used in the recipe.</td>
+    </tr>
+    <tr>
+      <td>n_ingredients</td>
+      <td>Total number of ingredients used.</td>
+    </tr>
+    <tr>
+      <td>average_rating</td>
+      <td>The average rating of the recipe, calculated from user interactions.</td>
+    </tr>
+  </tbody>
+</table>
+
+{% endraw %}
 
 
 
