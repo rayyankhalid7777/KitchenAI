@@ -19,7 +19,7 @@ The datasets include the following columns:
 
 #### Recipes Dataset
 | Column Name    | Description                                                                  |
-|---------------:|-----------------------------------------------------------------------------:|
+|----------------|------------------------------------------------------------------------------|
 | name           | Name of the recipe, providing a unique identifier for each dish.             |
 | id             | Unique Recipe ID.                                                            |
 | minutes        | Total preparation time for the recipe (in minutes).                          |
@@ -37,13 +37,38 @@ The datasets include the following columns:
 
 
 #### Interactions Dataset
-| Column Name   | Description                                       |
-|--------------:|--------------------------------------------------:|
-| user_id       | ID of the user who provided the rating or review. |
-| recipe_id     | ID of the recipe being reviewed.                  |
-| date          | Date of the interaction (review or rating).       |
-| rating        | Rating given to the recipe by the user.           |
-| review        | Textual review provided by the user (optional).   |
+<h3>Interactions Dataset</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>user_id</td>
+      <td>ID of the user who provided the rating or review.</td>
+    </tr>
+    <tr>
+      <td>recipe_id</td>
+      <td>ID of the recipe being reviewed.</td>
+    </tr>
+    <tr>
+      <td>date</td>
+      <td>Date of the interaction (review or rating).</td>
+    </tr>
+    <tr>
+      <td>rating</td>
+      <td>Rating given to the recipe by the user.</td>
+    </tr>
+    <tr>
+      <td>review</td>
+      <td>Textual review provided by the user (optional).</td>
+    </tr>
+  </tbody>
+</table>
+
 
 
 
