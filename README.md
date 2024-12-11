@@ -37,6 +37,7 @@ The datasets include the following columns:
 
 
 #### Interactions Dataset
+{% raw %}
 <h3>Interactions Dataset</h3>
 <table>
   <thead>
@@ -68,6 +69,9 @@ The datasets include the following columns:
     </tr>
   </tbody>
 </table>
+
+{% endraw %}
+
 
 
 
