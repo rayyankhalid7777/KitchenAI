@@ -17,7 +17,6 @@ This question helps uncover the factors that make a recipe popular among users. 
 ### Dataset Description
 The datasets include the following columns:
 
-#### Recipes Dataset
 {% raw %}
 <h3>Recipes Dataset</h3>
 <table>
@@ -87,7 +86,6 @@ The datasets include the following columns:
 
 
 
-#### Interactions Dataset
 {% raw %}
 <h3>Interactions Dataset</h3>
 <table>
